@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="f5t-LX-Qts">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -13,22 +14,207 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RB2-18-8Bw">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="01-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="xSF-9b-DVh">
+                                <rect key="frame" x="146" y="314" width="476" height="594"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8HR-bt-siM">
-                                <rect key="frame" x="16" y="20" width="259" height="272"/>
+                                <rect key="frame" x="159" y="328" width="450" height="450"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bq9-Tp-gv0">
+                                <rect key="frame" x="660" y="951" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="WTS-fG-cR7" kind="push" identifier="GotoViewResult" id="M6T-hy-His"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6Q9-LV-pPs"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="mView" destination="8HR-bt-siM" id="0ur-Qv-2BS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1159" y="239"/>
+        </scene>
+        <!--View Result-->
+        <scene sceneID="6GE-wX-StY">
+            <objects>
+                <viewController id="WTS-fG-cR7" customClass="ViewResult" customModule="scrambler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AwI-zq-RBs"/>
+                        <viewControllerLayoutGuide type="bottom" id="222-gS-GvJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Cp-0i-aII">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ml3-YG-6XV">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="il2-N5-uLJ">
+                                <rect key="frame" x="366" y="493" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhR-Tq-YAR">
+                                <rect key="frame" x="72" y="330" width="624" height="599"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKd-O9-HG5">
+                                        <rect key="frame" x="162" y="445" width="288" height="51"/>
+                                        <state key="normal" image="btn-submit.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="6X3-Sd-8oW" kind="push" id="SeH-MA-D0J"/>
+                                        </connections>
+                                    </button>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="02-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eog-Fs-vp1">
+                                        <rect key="frame" x="240" y="58" width="145" height="60"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="02-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xro-hz-KQ1">
+                                        <rect key="frame" x="41" y="76" width="178" height="179"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFQ-NE-esu">
+                                        <rect key="frame" x="58" y="93" width="145" height="145"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NOTTPERA" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Yy8-G1-CRC">
+                                        <rect key="frame" x="239" y="115" width="409" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                        <color key="textColor" red="1" green="0.83921568627450982" blue="0.0078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ฟรี! รับ WELCOME DRINK 1 สิทธิ์" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="djL-Hs-1j8">
+                                        <rect key="frame" x="9" y="320" width="607" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnW-FE-Ey1">
+                                        <rect key="frame" x="213" y="443" width="186" height="53"/>
+                                        <state key="normal" image="btn-backhome.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickBack:" destination="WTS-fG-cR7" eventType="touchUpInside" id="aes-M2-c87"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSr-gb-rmX">
+                                <rect key="frame" x="26" y="959" width="53" height="45"/>
+                                <state key="normal" image="btn-backarrow.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickBack:" destination="WTS-fG-cR7" eventType="touchUpInside" id="nn1-Ti-yPX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Lv4-Hi-siB"/>
+                    <connections>
+                        <outlet property="mButtonConfirm" destination="HKd-O9-HG5" id="TO2-gd-LyX"/>
+                        <outlet property="mButtonHome" destination="TnW-FE-Ey1" id="jQy-79-1g7"/>
+                        <outlet property="mImageProfile" destination="XFQ-NE-esu" id="1Cj-SV-2ky"/>
+                        <outlet property="mLabelName" destination="Yy8-G1-CRC" id="HrR-Wf-dSI"/>
+                        <outlet property="mLabelText" destination="djL-Hs-1j8" id="9Hb-i6-uME"/>
+                        <outlet property="mLoading" destination="il2-N5-uLJ" id="9oc-gz-gjW"/>
+                        <outlet property="mView" destination="PhR-Tq-YAR" id="fhz-xo-Qea"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6n-Ki-izD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2095" y="239"/>
+        </scene>
+        <!--View Final-->
+        <scene sceneID="jd9-Mj-xWn">
+            <objects>
+                <viewController id="6X3-Sd-8oW" customClass="ViewFinal" customModule="scrambler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Iy-uV-4KC"/>
+                        <viewControllerLayoutGuide type="bottom" id="AhV-DE-HSq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2bK-rd-23g">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="q6c-bf-NZl">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="03-tx.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qp2-vz-sLk">
+                                <rect key="frame" x="162" y="322" width="445" height="518"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bj-ej-vJJ">
+                                <rect key="frame" x="291" y="899" width="186" height="53"/>
+                                <state key="normal" image="btn-backhome.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickBack:" destination="6X3-Sd-8oW" eventType="touchUpInside" id="Sq7-wb-NZQ"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yod-Ok-KOD">
+                                <rect key="frame" x="366" y="493" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ytL-fj-mW7"/>
+                    <connections>
+                        <outlet property="mImageView" destination="Qp2-vz-sLk" id="FT5-xN-ijb"/>
+                        <outlet property="mLoading" destination="yod-Ok-KOD" id="9K1-hL-Xt0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ApZ-DF-PGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2999" y="239"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CYV-e8-6JX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="f5t-LX-Qts" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TU2-et-K8C">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="a2J-da-EN8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Q7-uB-Qdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="179" y="239"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="01-1.png" width="952" height="1188"/>
+        <image name="02-1.png" width="290" height="120"/>
+        <image name="02-2.png" width="356" height="358"/>
+        <image name="03-tx.png" width="891" height="1036"/>
+        <image name="background.jpg" width="1536" height="2048"/>
+        <image name="btn-backarrow.png" width="106" height="90"/>
+        <image name="btn-backhome.png" width="371" height="106"/>
+        <image name="btn-submit.png" width="577" height="102"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

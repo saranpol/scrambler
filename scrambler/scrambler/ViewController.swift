@@ -11,7 +11,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     @IBOutlet var mView: UIView!
     
@@ -22,15 +22,18 @@ class ViewController: UIViewController {
     var _running: Bool!
     var _metadataOutput: AVCaptureMetadataOutput!
     
+    var mURL: String!
     
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
     
-    
-    func frontCamera() -> AVCaptureDevice {
+    func frontCamera() -> AVCaptureDevice? {
         var devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
         for device in devices {
             if device.position == AVCaptureDevicePosition.Front {
-                return device as AVCaptureDevice
+                return device as? AVCaptureDevice
             }
         }
         return AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -64,15 +67,13 @@ class ViewController: UIViewController {
         _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
         
-//        _metadataOutput = AVCaptureMetadataOutput()
-//        var metadataQueue:dispatch_queue_t = dispatch_queue_create("", <#attr: dispatch_queue_attr_t!#>)
-//        
-//        ("com.1337labz.featurebuild.metadata", 0)
-//        [_metadataOutput setMetadataObjectsDelegate:self
-//        queue:metadataQueue];
-//        if ([_captureSession canAddOutput:_metadataOutput]) {
-//            [_captureSession addOutput:_metadataOutput];
-//        }
+        _metadataOutput = AVCaptureMetadataOutput()
+        var metadataQueue:dispatch_queue_t = dispatch_queue_create("com.hlpth.test.scrambler.metadata", nil)
+        _metadataOutput.setMetadataObjectsDelegate(self, queue: metadataQueue)
+        
+        if _captureSession.canAddOutput(_metadataOutput) {
+            _captureSession.addOutput(_metadataOutput)
+        }
         
         
         
@@ -94,8 +95,7 @@ class ViewController: UIViewController {
 //        name:UIApplicationDidEnterBackgroundNotification
 //        object:nil];
         
-//        // set default allowed barcode types, remove types via setings menu if you don't want them to be able to be scanned
-//        self.allowedBarcodeTypes = [NSMutableArray new];
+//        allowedBarcodeTypes = [NSMutableArray new];
 //        [self.allowedBarcodeTypes addObject:@"org.iso.QRCode"];
 //        [self.allowedBarcodeTypes addObject:@"org.iso.PDF417"];
 //        [self.allowedBarcodeTypes addObject:@"org.gs1.UPC-E"];
@@ -119,15 +119,19 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         startRunning()
-        
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopRunning()
     }
     
     func startRunning() {
-        if _running==true {
+        if (_running==true ||  _videoInput==nil){
             return
         }
         _captureSession.startRunning()
-//        _metadataOutput.metadataObjectTypes = _metadataOutput.availableMetadataObjectTypes;
+        _metadataOutput.metadataObjectTypes = _metadataOutput.availableMetadataObjectTypes;
         _running = true
     }
     
@@ -139,5 +143,41 @@ class ViewController: UIViewController {
         _running = false
     }
 
+    
+    func loadNextView() {
+        self.performSegueWithIdentifier("GotoViewResult", sender: nil)
+    }
+    
+    
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!){
+        
+
+        
+        var a: NSArray = NSArray(array: metadataObjects)
+        a.enumerateObjectsUsingBlock({obj, idx, stop in
+            if((obj as? AVMetadataMachineReadableCodeObject) != nil){
+                let code:AVMetadataMachineReadableCodeObject = self._previewLayer.transformedMetadataObjectForMetadataObject(obj as AVMetadataObject) as AVMetadataMachineReadableCodeObject
+                if(code.type == "org.iso.QRCode"){
+                    println(code.stringValue)
+                    self.stopRunning()
+                    self.mURL = code.stringValue
+                    dispatch_after(1, dispatch_get_main_queue(), {
+                        self.loadNextView()
+                    })
+                    return
+                }
+            }
+        })
+
+        
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let v:ViewResult = segue.destinationViewController as ViewResult
+        v.mURL = mURL
+    }
+    
+    
 }
 
